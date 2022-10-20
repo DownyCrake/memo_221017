@@ -14,11 +14,11 @@ public class TestController {
 
 	    @RequestMapping("/test2")
 	    public String logIn() {
-	    	return "/signIn";
+	    	return "/template/signIn";
 	    }
 
 	    @RequestMapping("/test3")
 	    public String signUp() {
-	    	return "/signUp";
+	    	return "/template/signUp";
 	    }
 }

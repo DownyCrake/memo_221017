@@ -42,7 +42,7 @@ footer {height:100px;}
 			</div>	
 			<button type="button" id="signInBtn" class="btn btn-primary  btn-block text-white">로그인</button>
 			<button type="button" onclick="location.href='#'"  class="btn btn-dark  btn-block text-white">회원가입</button>
-		</section>
+					</section>
 		 
 	</main>
 	<footer class="bg-secondary">
