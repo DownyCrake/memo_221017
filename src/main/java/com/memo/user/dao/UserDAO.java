@@ -8,7 +8,7 @@ public interface UserDAO {
 	
 	public boolean existLoginId(String loginId);
 	
-	public int insertUser(
+	public void insertUser(
 			@Param("loginId") String loginId
 			, @Param("password") String password
 			, @Param("name") String name

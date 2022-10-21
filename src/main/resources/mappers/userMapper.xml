@@ -14,12 +14,12 @@
 			`loginId` = #{loginId} 	
  	</select>
  
- 	<select id="insertUser" parameterType="Map" resultType="int">
+ 	<select id="insertUser" parameterType="Map">
 		INSERT INTO `user`
-		(`loginId`, `password`, `name`, `email`, `creadtedAt`, `updatedAt`)
+		(`loginId`, `password`, `name`, `email`, `createdAt`, `updatedAt`)
 		VALUES 	
  		(
-			#{logonId}
+			#{loginId}
 			, #{password}
 			, #{name}
 			, #{email}

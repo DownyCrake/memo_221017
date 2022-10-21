@@ -1,4 +1,6 @@
-@charset "EUC-KR";
+@charset "UTF-8";
+
+a {text-decoration: none !important;}
 
 header {height:100px;}
 .header-box {height:100px;}
@@ -7,3 +9,5 @@ header {height:100px;}
 #signUpDiv {height:500px;}  
 .sign-up-box {width:500px;}
 footer {height:100px;}
+#footerBox {height:100px;}
+

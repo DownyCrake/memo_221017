@@ -15,12 +15,12 @@ public class UserBO {
 		return userDAO.existLoginId(loginId);
 	}
 	
-	public int addUser(
+	public void addUser(
 			String loginId
 			, String password
 			, String name
 			, String email) {
-		return userDAO.insertUser(loginId, password, name, email);
+		userDAO.insertUser(loginId, password, name, email);
 	}
 	
 }

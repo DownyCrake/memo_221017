@@ -38,7 +38,7 @@ $(document).ready(function() {
 	//중복확인
 	$('#loginCheckBtn').on('click',function() {
 		let loginId = $('#loginId').val().trim();	
-		alert(loginId);	
+		// alert(loginId);	
 		if (loginId.length < 4) {
 			$('#idCheckLength').removeClass('d-none');
 			$('#idCheckDuplicated').addClass('d-none');
