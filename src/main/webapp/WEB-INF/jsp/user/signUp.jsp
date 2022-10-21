@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<div id="signUpDiv" class="d-flex justify-content-center align-items-center bg-warning">
+<div id="signUpDiv" class="d-flex justify-content-center align-items-center ">
 
 	<form id="signUpForm" method="post" class="sign-up-box" action="/user/sign_up">
 			<div class="form-group d-flex m-0">

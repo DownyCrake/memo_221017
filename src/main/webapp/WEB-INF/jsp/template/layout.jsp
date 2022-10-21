@@ -19,7 +19,7 @@
 	<header class="bg-secondary">
 		<jsp:include page="../include/header.jsp"></jsp:include>
 	</header>
-	<section class="contents bg-info">
+	<section class="contents">
 		<jsp:include page="../${viewName}.jsp"></jsp:include>
 	</section>
 	<footer class="bg-secondary">

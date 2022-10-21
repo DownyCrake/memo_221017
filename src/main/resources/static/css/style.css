@@ -6,8 +6,13 @@ header {height:100px;}
 .header-box {height:100px;}
 
 .contents {min-height:500px;}
+
 #signUpDiv {height:500px;}  
 .sign-up-box {width:500px;}
+
+#signInDiv {height:500px;}
+#signInForm {width:300px;}
+
 footer {height:100px;}
 #footerBox {height:100px;}
 
