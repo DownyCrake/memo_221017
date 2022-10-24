@@ -50,7 +50,7 @@ $(document).ready(function() {
 		$.post(url,params)
 		.done(function(data){
 			if (data.code == 100) { //성공
-				location.href = "/user/sign_in_view" //글 목록 화면으로 이동
+				location.href = "/post/post_list_view" //글 목록 화면으로 이동
 			} else {
 				alert(data.errorMessage);
 			}
