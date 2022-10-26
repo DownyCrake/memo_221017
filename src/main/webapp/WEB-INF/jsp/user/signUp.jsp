@@ -52,14 +52,13 @@ $(document).ready(function() {
 		
 		, success:function(data){
 			if (data.result) { //중복
-				$('#idCheckLength').addveClass('d-none');
 				$('#idCheckDuplicated').removeClass('d-none');
+				$('#idCheckLength').addClass('d-none');
 				$('#idCheckOk').addClass('d-none');	
 			} else { //중복X
 				$('#idCheckDuplicated').addClass('d-none');
 				$('#idCheckLength').addClass('d-none');
 				$('#idCheckOk').removeClass('d-none');	
-				
 			}
 		} 
 		, error:function(e){
