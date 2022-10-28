@@ -26,8 +26,73 @@
 					<a href="/post/post_list_view">
 					<button type="button" id="postListBtn" class="btn btn-secondary">목록으로</button>
 					</a>
-					<button type="button" id="postUpdateBtn" class="btn btn-primary">수정</button>
+					<button type="button" id="postUpdateBtn" class="btn btn-primary" data-post-id="${post.id}">수정</button>
 				</div>
 			</div>
 	</div>
 </div>
+
+<script>
+$(document).ready(function(){
+	
+	//수정버튼 클릭
+	$('#postUpdateBtn').on('click', function() {
+		//alert("수정버튼 클릭");
+		let subject = $('#subject').val().trim();
+		if (subject =='') {
+			alert("제목을 입력하세요");
+			return;
+		}
+		let content= $('#content').val();
+		
+		let file = $('#file').val(); //파일의 경로 string  c:\fakepath\스크린샷(1).png
+		// alert(file);
+		//파일이 업로드 된 경우 확장자 체크
+		if (file != '') {
+			console.log(file.split('.').pop()); // 파일명을 . 기준으로 나눈다 =>확장자를 뽑아낸다
+			let ext = file.split('.').pop().toLowerCase(); // 확장자를 소문자로 변경
+			if ($.inArray(ext, ['gif', 'jpg', 'jpeg', 'png']) == -1) {
+				alert("gif, jpg, jpeg, png 파일만 업로드 할 수 있습니다.");
+				$('#file').val(''); //파일을 비운다
+				return;
+			}
+		}
+		
+		//폼태그를 자바스크립트에서 만든다
+		let formData = new FormData();
+		let postId = $(this).data('post-id');
+		// alert("글번호"+postId);
+		formData.append("postId", postId);
+		formData.append("subject",subject);
+		formData.append("content",content);
+		formData.append("file",$('#file')[0].files[0]);
+		
+		//ajax 
+		$.ajax({
+			//request
+				type:"put"
+				, url:"/post/update"
+				, data:formData
+				, enctype:"multipart/form-data"  // 파일 업로드를 위한 필수 설정
+				, processData:false  // 파일 업로드를 위한 필수 설정
+				, contentType:false  // 파일 업로드를 위한 필수 설정
+				
+			//response
+			, success:function(data){
+				if (data.code == 100){
+					alert("메모가 수정되었습니다"); //성공
+					location.reload();					
+				} else {
+					alert(data.errorMessage); //실패
+				}
+			} 
+			
+		});//ajax
+		
+		
+	});//수정버튼 클릭
+	
+	
+});//document ready
+
+</script>

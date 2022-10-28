@@ -56,4 +56,35 @@
 	WHERE
 		`userId` = #{userId} AND `id` = #{postId}
  </select>
+ 
+ 
+ <select id="selectPostByPostId" parameterType="int" resultType="com.memo.post.model.Post">
+ 	SELECT
+ 		`id`
+ 		,`userId`
+		, `subject`
+		, `content`
+		, `imagePath`
+		, `createdAt`
+		, `updatedAt`
+	FROM
+		`post`
+	WHERE
+		`id` = #{postId}
+ </select>
+ 
+ <update id="UpdatePost" parameterType="map">
+ 	UPDATE `post`
+ 		SET
+ 			`subject` = #{subject}
+ 			, `content` = #{content}
+ 			, `updatedAt` = NOW()
+ 			<!-- imagePath가 있을때만 수정한다 -->
+ 			<if test="imagePath != null">, `imagePath` = #{imagePath}</if>
+ 		WHERE
+ 			`id` = #{postId}
+ 
+ </update>
+ 
+ 
  </mapper>
