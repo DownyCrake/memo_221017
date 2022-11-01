@@ -1,5 +1,6 @@
 package com.memo.post.bo;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -18,6 +19,8 @@ public class PostBO {
 	// private Logger log = LoggerFactory.getLogger(PostBO.class);
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
+	private static final int POST_MAX_SIZE = 3;
+	
 	@Autowired
 	private PostDAO postDAO;
 
@@ -38,11 +41,45 @@ public class PostBO {
 	}
 
 	/* 글목록 불러오기 */
-	public List<Post> getPostListById(int userId) {
-
-		return postDAO.selectPostListById(userId);
+	public List<Post> getPostListById(int userId, Integer prevId, Integer nextId ) {
+		//게시글 번호 : 10 9 8 | 7 6 5 | 4 3 2 | 1
+		// 만약 4 3 2 페이지에 있을때
+		// 1) 이전 : 정방향 4보다 큰 3개 => 코드에서 reverse 
+		// 2) 다음 : 2 보다 작은 3개 
+		
+		Integer standardId = null; // 기준이 되는 id 
+		String direction = null; //방향
+		
+		if (prevId != null) {
+			// 이전 클릭 
+			standardId = prevId;
+			direction = "prev";
+			List<Post> postList = postDAO.selectPostListById(userId, standardId, direction, POST_MAX_SIZE);
+			Collections.reverse(postList);
+			return postList;
+		} else if (nextId != null) {
+			// 다음 클릭
+			standardId = nextId;
+			direction = "next";
+		}
+		
+		// 첫페이지일 때는 standardId 가 null. 다음일때는 값이 있음
+		return postDAO.selectPostListById(userId, standardId, direction, POST_MAX_SIZE);
 	}
 
+	public boolean isLastPage(int userId, Integer nextId) { //next 방향의 끝인가
+		int postId = postDAO.selectPostIdByUserIdAndSort(userId,"ASC");
+		return postId == nextId;
+	}
+
+	public boolean isFirstPage(int userId, Integer prevId) { //next 방향의 끝인가
+		int postId = postDAO.selectPostIdByUserIdAndSort(userId,"DESC");
+		return postId == prevId;
+	}
+	
+	
+	
+	
 	public Post getPostByPostIdAndUserId(int postId, int userId) {
 
 		return postDAO.selectPostByPostIdAndUserId(postId, userId);
@@ -91,4 +128,6 @@ public class PostBO {
 
 		return postDAO.deletePostByPostId(id);
 	}
+
 }
+
