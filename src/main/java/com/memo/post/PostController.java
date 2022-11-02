@@ -27,9 +27,9 @@ public class PostController {
 			, @RequestParam(value="nextId", required=false) Integer nextIdParam
 			, HttpSession session, Model model) {
 		Integer userId = (Integer)session.getAttribute("userId");  //로그인이 풀려있으면 Null 이므로 int 불가
-		if (userId == null) { //로그인이 풀려있으면 로그인 페이지로 리다이렉트
-			return "redirect:/user/sign_in_view";
-		}
+//		if (userId == null) { //로그인이 풀려있으면 로그인 페이지로 리다이렉트
+//			return "redirect:/user/sign_in_view";
+//		}
 		List<Post> postList = postBO.getPostListById(userId, prevIdParam, nextIdParam);
 		int prevId = 0;
 		int nextId = 0;
@@ -58,10 +58,10 @@ public class PostController {
 	
 	@RequestMapping("/post_create_view")
 	public String postCreateView(HttpSession session, Model model) {
-		Integer userId = (Integer)session.getAttribute("userId");
-		if (userId == null) {
-			return "redirect:/user/sign_in_view";
-		}
+//		Integer userId = (Integer)session.getAttribute("userId");
+//		if (userId == null) {
+//			return "redirect:/user/sign_in_view";
+//		}
 		model.addAttribute("viewName", "post/postCreate");
 		return "template/layout";
 	}
@@ -74,9 +74,9 @@ public class PostController {
 		
 		//로그인 확인 > 안되있으면 로그인 페이지로
 		Integer userId = (Integer)session.getAttribute("userId");
-		if (userId == null) {
-			return "redirect:/user/sign_in_view";
-		}
+//		if (userId == null) {
+//			return "redirect:/user/sign_in_view";
+//		}
 		// postId에 해당하는 데이터를 가져와서 model에 담는다
 		Post post = postBO.getPostByPostIdAndUserId(PostId, userId);
 		model.addAttribute("post",post);
